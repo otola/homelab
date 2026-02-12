@@ -1,0 +1,13 @@
+defaultSettings:
+  defaultReplicaCount: 1
+  autoSalvage: false
+  storageOverProvisioningPercentage: 100
+  storageMinimalAvailablePercentage: 15
+
+persistence:
+  defaultDataPath: /var/lib/longhorn
+
+defaultBackupStore:
+  backupTarget: ${CIFS_NETWORK_ADDRESS_AND_PATH}
+  backupTargetCredentialSecret: cifs-secret
+
