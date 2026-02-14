@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: traefik
+    catagory: network
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: traefik
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  source:
+    repoURL: https://helm.traefik.io/traefik
+    chart: traefik
+    targetRevision: 39.0.1
+    helm:
+      values: |
+        additionalArguments:
+          - "--api=true"
+          - "--api.insecure=true"
+          - "--api.dashboard=true"
+          - "--ping=true"
+          - "--ping.entrypoint=traefik"
+        service:
+          type: NodePort

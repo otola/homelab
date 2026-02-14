@@ -1,0 +1,5 @@
+logging:
+  level: info
+namespaceOverride: argocd
+secret:
+  argocdServerAdminPassword: ${ARGO_ADMIN_PASSWORD}
