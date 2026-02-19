@@ -3,3 +3,8 @@ logging:
 namespaceOverride: argocd
 secret:
   argocdServerAdminPassword: ${ARGO_ADMIN_PASSWORD}
+configs:
+  cm:
+    url: https://argocd.example.com
+  params:
+    server.insecure: "true"

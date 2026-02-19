@@ -36,4 +36,6 @@ spec:
           - "--ping=true"
           - "--ping.entrypoint=traefik"
         service:
-          type: NodePort
+          type: LoadBalancer
+          spec:
+            externalTrafficPolicy: Local

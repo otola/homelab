@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  secretName: example-tls
+  dnsNames:
+    - "argocd.example.com"
+  issuerRef:
+    name: letsencrypt-cluster-issuer
+    kind: ClusterIssuer
